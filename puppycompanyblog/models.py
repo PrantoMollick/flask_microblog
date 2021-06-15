@@ -1,6 +1,6 @@
 # Models.py
 from puppycompanyblog import db, login_manager
-from wekzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
 
@@ -31,9 +31,9 @@ class User(db.Model, UserMixin):
         return f"Username {self.username}"
 
 class BlogPost(db.Model):
-    users = db.relationship(user)
-    id = db.Column(db.Interger, primary_key = True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    users = db.relationship("User")
+    id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     title = db.Column(db.String(140), nullable=False)
     text = db.Column(db.Text, nullable=False)

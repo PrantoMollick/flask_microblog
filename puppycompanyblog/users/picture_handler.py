@@ -1,7 +1,7 @@
 # users/picture_handler.py
 
 import os
-import PIL import Image
+from PIL import Image
 from flask import url_for, current_app
 
 

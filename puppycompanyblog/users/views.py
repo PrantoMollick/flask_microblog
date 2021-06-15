@@ -10,7 +10,7 @@ users = Blueprint('users', __name__)
 
 
 # registration
-@users.routes('/register', methods=['GET', 'POST'])
+@users.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
 
@@ -27,8 +27,8 @@ def register():
 
 # Login
 @users.route('/login', methods=['GET', 'POST'])
-    form = LoginForm
-
+def login():
+    form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email = form.email.data).first()
 
@@ -83,8 +83,8 @@ def account():
 
     return render_template('account.html', profile_image = profile_image, form=form)
 
-
-@user.route('/<username>')
+#Blog post handaling Dynamic Routing
+@users.route('/<username>')
 def user_posts(username):
     page = request.args.get('page', 1, type=int)
     user = User.query.filter_by(username=username).first_or_404()
