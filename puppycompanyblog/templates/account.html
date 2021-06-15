@@ -4,11 +4,11 @@
 
   <div class="container-fulid border my-5 p-5 text center">
     <h1>welcome to page for {{ current_user.username }}</h1>
-    <img align="center" src="{{ url_for('static', filename='profile_pics/'+current_user.profile_image) }}" alt="">
+    <img align="center" width="100px" src="{{ url_for('static', filename='profile_pics/'+current_user.profile_image) }}" alt="profile-image">
   </div>
 
   <div class="container">
-    <form method="POST">
+    <form method="POST" action="" enctype="multipart/form-data">
         {{ form.hidden_tag() }}
 
         <div class="mb-3">
@@ -16,17 +16,17 @@
           {{ form.username(class="form-control") }}
         </div>
 
-        <div class="form-group">
+        <div class="mb-3">
           {{ form.email.label(class="form-label") }} <br>
           {{ form.email(class="form-control") }}
         </div>
 
-        <div class="form-group">
+        <div class="mb-3">
           {{ form.picture.label(class="form-label") }} <br>
           {{ form.picture(class="form-control") }}
         </div>
 
-        <div class="form-group">
+        <div class="mb-3">
           {{ form.submit(class="btn btn-primary") }}
         </div>
 

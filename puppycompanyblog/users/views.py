@@ -15,10 +15,8 @@ def register():
     form = RegistrationForm()
 
     if form.validate_on_submit():
-        user = User(email=form.email.data,
-                    username=form.username.data,
-                    password_hash = form.password.data)
-        db.session.add(user)
+        u = User(email=form.email.data, username=form.username.data, password = form.password.data)
+        db.session.add(u)
         db.session.commit()
         flash('Thanks for Registration')
         return redirect(url_for('users.login')), 301
@@ -63,10 +61,10 @@ def logout():
 @users.route('/account', methods=['GET', 'POST'])
 @login_required
 def account():
-
     form = UpdateUserForm()
-
     if form.validate_on_submit():
+        current_user.username = form.username.data
+        db.session.commit()
         if form.picture.data:
             username = current_user.username
             pic = addProfilePic(form.picture.data, username)
