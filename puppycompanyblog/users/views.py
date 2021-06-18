@@ -63,12 +63,13 @@ def logout():
 def account():
     form = UpdateUserForm()
     if form.validate_on_submit():
-        current_user.username = form.username.data
-        db.session.commit()
+        # current_user.username = form.username.data
+        # db.session.commit()
         if form.picture.data:
             username = current_user.username
             pic = addProfilePic(form.picture.data, username)
             current_user.profile_image = pic
+        if current_user:
             current_user.username = form.username.data
             db.session.commit()
             flash("User Account Updated!")
