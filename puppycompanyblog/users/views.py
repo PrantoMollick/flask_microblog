@@ -82,6 +82,7 @@ def account():
 
     return render_template('account.html', profile_image = profile_image, form=form)
 
+
 #Blog post handaling Dynamic Routing
 @users.route('/<username>')
 def user_posts(username):
