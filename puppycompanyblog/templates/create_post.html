@@ -1,5 +1,25 @@
 {% extends "base.html" %}
 
-{% block contlent %}
+{% block content %}
+    <div class="container">
+       <form method="POST">
+            {{ form.hidden_tag() }}
 
+            <div class="from-group">
+                {{ form.title.label(class="form-control-label") }}
+                {{ form.title(class="form-control form-control-lg") }}
+            </div>
+            
+            <div class="from-group mb-3">
+                {{ form.text.label(class="form-control-label") }}
+                {{ form.text(class="form-control form-control-lg") }}
+            </div>
+
+            <div class="from-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+
+       </form>
+
+    </div>
 {% endblock %}
